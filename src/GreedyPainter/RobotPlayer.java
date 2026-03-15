@@ -1,4 +1,4 @@
-package alternativebot1;
+package GreedyPainter;
 
 import battlecode.common.*;
 
