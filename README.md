@@ -1,40 +1,57 @@
-# Tugas Besar 1 Strategi Algoritma: MIT Battlecode Bot (GreedyPainter)
+# Tubes 1 Strategi Algoritma - STIMA Battle Bot
 
-Repositori ini berisi implementasi kecerdasan buatan (AI) / Bot untuk permainan **MIT Battlecode**. Bot ini diberi nama **GreedyPainter** karena menggunakan pendekatan algoritma *Greedy* (Rakus) untuk mengambil keputusan optimal secara lokal di setiap *turn* (giliran).
+Repositori ini berisi implementasi source code bot untuk permainan STIMA-battle. Terdapat tiga buah bot yang dikembangkan menggunakan pendekatan Algoritma Greedy.
 
-Repositori ini ditulis 100% menggunakan bahasa **Java**.
+## Penjelasan Singkat Algoritma Greedy
 
-## 📌 Deskripsi Strategi (Algoritma Greedy)
-Bot ini mengontrol beberapa jenis unit robot dengan prinsip *greedy* sebagai berikut:
-1. **Navigasi & Jarak:** Unit selalu memilih target (musuh, reruntuhan/ruin, atau menara kawan) yang posisinya paling dekat saat itu juga.
-2. **Efisiensi Serangan (Splasher):** Selalu menyemburkan cat ke area yang memberikan skor tertinggi (paling banyak mengecat area kosong atau menimpa cat musuh).
-3. **Sapuan Maksimal (Mopper):** Sebelum mengayunkan alat pembersih (*mop swing*), unit akan menghitung arah yang mengenai jumlah musuh paling banyak.
-4. **Manajemen Sumber Daya:** Tower akan langsung memproduksi unit baru (dengan urutan tertentu) begitu sumber daya (chip dan cat) mencukupi, tanpa menabung.
+Berikut adalah penjelasan algoritma greedy yang diimplementasikan pada masing-masing bot:
 
-## 🤖 Peran Unit Robot
-- **Tower:** Bertahan, melakukan *upgrade*, dan memproduksi unit (Splasher, Mopper, Soldier).
-- **Soldier:** Unit pekerja dan kombatan dasar; bertugas mencari reruntuhan (*ruins*) untuk membangun tower baru.
-- **Splasher:** Unit spesialis area; bertugas mengecat peta secara masif dan efisien.
-- **Mopper:** Unit jarak dekat; bertugas membersihkan cat musuh dan melakukan serangan sapuan (*mop swing*) ke gerombolan musuh.
+1. **GreedyPainter**
+   Bot ini menggunakan strategi greedy yang berfokus pada pewarnaan (painting) area. Pada setiap gilirannya, bot akan mengevaluasi semua kemungkinan langkah dan selalu memilih langkah yang akan langsung menghasilkan jumlah petak/area terwarnai paling banyak saat itu juga.
 
-## 🚀 Cara Menjalankan (How to Run)
-Karena ini adalah proyek MIT Battlecode, pastikan Anda telah menginstal JDK yang sesuai.
+2. **GreedyExpansion**
+   Bot ini mengimplementasikan algoritma greedy dengan prioritas pada ekspansi wilayah. Bot akan selalu memilih pergerakan menuju area kosong atau node terdekat yang belum dikuasai. Keputusan diambil murni berdasarkan jarak terpendek atau cost terkecil untuk memperluas jangkauan tanpa mempertimbangkan ancaman jangka panjang.
 
-1. *Clone* repositori ini:
+3. **GPBSM (Main Bot)**
+   Sebagai bot utama, GPBSM mengkombinasikan metrik evaluasi yang lebih komprehensif. Pendekatan greedy pada bot ini tidak hanya melihat satu aspek, melainkan menghitung bobot keuntungan maksimum dari setiap aksi yang mungkin dilakukan (seperti mengecat, menyerang musuh, atau mengambil power-up). Bot akan mengeksekusi aksi dengan nilai kalkulasi greedy tertinggi pada giliran tersebut.
+
+## Requirement Program
+
+Untuk dapat melakukan kompilasi dan menjalankan program ini, pastikan sistem Anda telah terpasang perangkat lunak berikut:
+* Java Development Kit (JDK)
+* Gradle
+* Git
+
+## Langkah-langkah Kompilasi dan Build Program
+
+Repositori ini hanya memuat source code dari bot. Untuk menjalankan bot, Anda harus menggunakan game engine yang telah dimodifikasi. Berikut adalah panduan instalasi dan kompilasinya:
+
+1. Lakukan clone pada repositori game engine yang telah disediakan:
    ```bash
-   git clone https://github.com/LeonArif/Tubes1_STIma.git
-   cd Tubes1_STIma
+   git clone https://github.com/Fariz36/STIMA-battle
+   cd STIMA-battle
    ```
-2. Jalankan *client* Battlecode menggunakan Gradle:
+
+2. Integrasikan bot ke dalam engine:
+   Salin atau pindahkan source code bot (`greedypainter`, `greedyexpansion`, dan `gpbsm`) dari repositori ini ke dalam direktori pengembangan bot yang ada di dalam folder `STIMA-battle` tersebut.
+
+3. Lakukan build pada program menggunakan Gradle dengan menjalankan perintah:
    ```bash
-   # Di sistem operasi Windows:
-   gradlew run
-
-   # Di sistem operasi Mac/Linux:
-   ./gradlew run
+   ./gradlew build
    ```
-3. Pilih bot `GreedyPainter` pada antarmuka Battlecode untuk mempertandingkannya.
 
-## 👥 Identitas Pembuat
-* Tugas Besar 1 Mata Kuliah Strategi Algoritma (STIma)
-* Dibuat oleh: **Leon Arif** (dan tim, jika ada)
+4. Masuk ke dalam direktori client:
+   ```bash
+   cd client
+   ```
+
+5. Jalankan aplikasi hasil build yang terdapat pada direktori tersebut.
+
+6. Konfigurasi pada aplikasi:
+   Setelah aplikasi berhasil berjalan, Anda akan diminta untuk memilih direktori root. Pilihlah direktori `STIMA-battle` sebagai direktori root (pastikan Anda **bukan** memilih `STIMA-battle/src`).
+
+## Author
+
+* 18223057 - Stanislaus Ardy Bramantyo
+* 18223120 - Leonard Arif Sutiono
+* 18223129 - Izhar Alif Akbar
